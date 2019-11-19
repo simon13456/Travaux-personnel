@@ -25,7 +25,7 @@ public class lazer : MonoBehaviour
         else if (this.tag == "lazerennemy")
         {
             transform.Translate(Vector3.down * Time.deltaTime * vit);
-            if (transform.position.y >= 20)
+            if (transform.position.y <= -20)
             {
                 Destroy(gameObject);
             }

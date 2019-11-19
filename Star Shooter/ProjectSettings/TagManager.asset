@@ -6,6 +6,9 @@ TagManager:
   tags:
   - lazer
   - ennemy
+  - lazerennemy
+  - foreground
+  - background
   layers:
   - Default
   - TransparentFX
@@ -42,4 +45,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 3340394537
+    locked: 0
+  - name: foreground
+    uniqueID: 343527749
     locked: 0
