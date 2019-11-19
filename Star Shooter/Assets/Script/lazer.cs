@@ -14,12 +14,20 @@ public class lazer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (this.tag == "lazer")
         {
             transform.Translate(Vector3.up * Time.deltaTime * vit);
             if (transform.position.y >= 20)
             {
-                Destroy(gameObject);
+                if (this.transform.parent == null)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Destroy(this.transform.parent.gameObject);
+                }
             }
         }
         else if (this.tag == "lazerennemy")

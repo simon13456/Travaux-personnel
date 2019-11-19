@@ -45,7 +45,8 @@ public class ennemi : MonoBehaviour
     {
         if(other.tag == "lazer")
         {
-           // Destroy(other.gameObject);
+            // Destroy(other.gameObject);
+            Destroy(other.gameObject);
             Destroy(this.gameObject);
             _uImanager.AjouterScore(100);
         }
