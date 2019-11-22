@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  _powerUpID: 0
+  _powerUpID: 1
 --- !u!247 &8771431182511900246
 ConstantForce2D:
   m_ObjectHideFlags: 0

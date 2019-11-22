@@ -28,14 +28,14 @@ public class spawn : MonoBehaviour
     }
     IEnumerator SpawnPowerUpCo()
     {
-        //yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(15f);
         while (!_stopaumassacre)
         {
             
             Vector3 position = new Vector3(UnityEngine.Random.Range(-11f, 11f), 10.5f, 0f);
             int Randpower = UnityEngine.Random.Range(0, _powerUp.Length);
             Instantiate(_powerUp[Randpower], position, Quaternion.identity);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(10f);
         }
 
     }

@@ -7,8 +7,10 @@ public class ennemi : MonoBehaviour
 {
     [SerializeField] private float _speed=3f;
     [SerializeField] private GameObject _LaserPrefab = default;
+    [SerializeField] private GameObject _explosion = default;
     private bool tjrvrai=true;
     private UIManager _uImanager = default;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +48,9 @@ public class ennemi : MonoBehaviour
         if(other.tag == "lazer")
         {
             // Destroy(other.gameObject);
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
             Destroy(this.gameObject);
+            Instantiate(_explosion, transform.position, Quaternion.identity);
             _uImanager.AjouterScore(100);
         }
         else if (other.tag == "Player")
@@ -55,6 +58,7 @@ public class ennemi : MonoBehaviour
             Joueur joueur = other.transform.GetComponent<Joueur>();
             joueur.dammage();
             Destroy(this.gameObject);
+            Instantiate(_explosion, transform.position, Quaternion.identity);
         }
     }
 }

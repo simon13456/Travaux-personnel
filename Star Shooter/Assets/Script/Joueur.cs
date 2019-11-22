@@ -9,18 +9,21 @@ public class Joueur : MonoBehaviour
     [SerializeField] float vit = 10;
     [SerializeField] private int _viesjoueur = 3;
     [SerializeField] private bool _tripleshot;
+    [SerializeField] private GameObject _explosion = default;
+    [SerializeField] private bool _vieInfini=false;
     private GameObject _shield = default;
     private GameObject _tripleyolo = default;
     private spawn _spawnmangaer = default;
     private UIManager _uImanager = default;
     private bool _shieldActive;
+   
 
 
     // Start is called before the first frame update
     void Start()
     {
         _shield = transform.GetChild(0).gameObject;
-       // _tripleyolo = transform.GetChild(1).gameObject;
+       _tripleyolo = transform.GetChild(1).gameObject;
         transform.position = new Vector3(0f, -5.51f, 0f);
         _spawnmangaer = GameObject.Find("Spawn_Mannager").GetComponent<spawn>();
         _uImanager = FindObjectOfType<UIManager>();
@@ -81,12 +84,13 @@ public class Joueur : MonoBehaviour
     }
     public void dammage()
     {
-        if (!_shieldActive)
+        if (!_shieldActive && !_vieInfini)
         {
             _viesjoueur--;
-            if (_viesjoueur < 1)
+            if (_viesjoueur < 1 )
             {
                 Destroy(this.gameObject);
+                Instantiate(_explosion, transform.position, Quaternion.identity);
                 _spawnmangaer.MortJoueur();
             }
             _uImanager.ChangeLivesDisplayImage(_viesjoueur);
@@ -113,10 +117,15 @@ public class Joueur : MonoBehaviour
     IEnumerator tripleShotco()
     {
         _tripleshot = true;
-        //_tripleyolo.SetActive(true);
-        yield return new WaitForSeconds(5f);
-       // _tripleyolo.SetActive(false);
-        _tripleshot = false;
+        for (int i=0; i <= 150; i++)
+        {
+           _tripleyolo.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+          _tripleyolo.gameObject.SetActive(false);
+           yield return new WaitForSeconds(0.1f);
+          }
+          _tripleshot = false;
+       
     }
     public void speed()
     {

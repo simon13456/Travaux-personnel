@@ -49,6 +49,8 @@ MonoBehaviour:
   _speed: 3
   _LaserPrefab: {fileID: 1682496654212874650, guid: deeac2951004b9b47839e5a1b3361ebf,
     type: 3}
+  _explosion: {fileID: 6578458089448510436, guid: 28f0a6a9166ab6c438b634895cdbe749,
+    type: 3}
 --- !u!50 &106313716
 Rigidbody2D:
   serializedVersion: 4
