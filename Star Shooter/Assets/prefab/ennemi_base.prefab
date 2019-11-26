@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 106313716}
   - component: {fileID: 2269348153980728673}
   - component: {fileID: 5185366508644424615}
+  - component: {fileID: 1400775678778113846}
   m_Layer: 0
-  m_Name: ennemi
+  m_Name: ennemi_base
   m_TagString: ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,3 +148,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.3444324, y: 3.0277715}
   m_EdgeRadius: 0
+--- !u!114 &1400775678778113846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3513539478696816012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ec01e8cc8d0b647bce6dfc0ec008c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

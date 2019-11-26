@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 171240110}
   - component: {fileID: 171240109}
   - component: {fileID: 171240112}
+  - component: {fileID: 171240113}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -352,6 +353,25 @@ PolygonCollider2D:
       - {x: -1.48, y: -2}
       - {x: -0.9, y: -1.51}
       - {x: -0.81, y: -1.43}
+--- !u!95 &171240113
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171240108}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 465b2d95ac935114ca95768559812579, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &351489468
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,13 +401,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f681ff81260d1714d8e3992d40a34768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 3513539478696816012, guid: 2ed6cb8e5f4f338429e34dc282e331c1,
+  _enemyPrefab: {fileID: 3513539478696816012, guid: bf8971a9f5446344c8cefc84e860c61b,
     type: 3}
   _powerUp:
   - {fileID: 3057564734490886870, guid: 31c488271ea9d1349a6d3b8f21d05540, type: 3}
   - {fileID: 3057564734490886870, guid: 70788d7c6bf5f8942be7e6f7b78c7151, type: 3}
   - {fileID: 3057564734490886870, guid: 07f5023e9be8de241834a4b464a17ebf, type: 3}
   delay: 1
+  _configVague:
+  - {fileID: 11400000, guid: ee5599e27fcff2f4dbc730c2194cbf4e, type: 2}
+  - {fileID: 11400000, guid: e97fc49ac7166a14eb5b7d4728b42543, type: 2}
+  - {fileID: 11400000, guid: ee5599e27fcff2f4dbc730c2194cbf4e, type: 2}
 --- !u!4 &351489470
 Transform:
   m_ObjectHideFlags: 0

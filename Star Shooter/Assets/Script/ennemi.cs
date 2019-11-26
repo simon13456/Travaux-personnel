@@ -20,19 +20,16 @@ public class ennemi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mouvement();
-        int rand = (int)(UnityEngine.Random.Range(0f, 100f));
-        if (rand <= 40 && tjrvrai)
+        int rand = (int)(UnityEngine.Random.Range(0f, 10000f));
+        if (rand <= 1 && tjrvrai)
         {
-            StartCoroutine(Lazer());
-            tjrvrai = false;
+            StartCoroutine(Lazer());  
         }
     }
     IEnumerator Lazer()
     {
         Instantiate(_LaserPrefab, transform.position + new Vector3(0f, -2f, 0f), Quaternion.identity);
-        new WaitForSeconds(2f);
-        yield return tjrvrai=true;
+        yield return new WaitForSeconds(0.5f);;
     }
     private void mouvement()
     {

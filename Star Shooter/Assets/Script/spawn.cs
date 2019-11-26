@@ -9,12 +9,38 @@ public class spawn : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefab = default;
     [SerializeField] private GameObject[] _powerUp = default;
     [SerializeField] private float delay = 3f;
+    [SerializeField] private List<script> _configVague = default;
+    private int _vaguedepart = 0;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(EnemyRoutine());
+        //StartCoroutine(EnemyRoutine());
         StartCoroutine(SpawnPowerUpCo());
+        StartCoroutine(spawnVague());
     }
+    IEnumerator spawnVague()
+    {
+        while (!_stopaumassacre)
+        {
+            for (int i = _vaguedepart; i < _configVague.Count; i++)
+            {
+                script vagueActuel = _configVague[i];
+                yield return StartCoroutine(spawnVagueEnnemi(vagueActuel));
+                yield return new WaitForSeconds(2f);
+            }
+        }
+    }
+    IEnumerator spawnVagueEnnemi(script vague)
+    {
+        for(int i=0; i< vague.GetNbsEnnemy(); i++)
+        {
+            GameObject nouveauEnnemi = Instantiate(vague.GetPrefabEnnemy(), vague.GetPointRepere()[0].transform.position, Quaternion.identity);
+            nouveauEnnemi.GetComponent<CheminEnnemi>().SetConfigVague(vague);
+            yield return new WaitForSeconds(vague.GetTempsSpawn());
+        }     
+    }
+
+
     IEnumerator EnemyRoutine()
     {
         while (!_stopaumassacre)
@@ -45,9 +71,8 @@ public class spawn : MonoBehaviour
         
     }
 
-    internal void MortJoueur()
+    public void MortJoueur()
     {
         _stopaumassacre = true;
-        
     }
 }

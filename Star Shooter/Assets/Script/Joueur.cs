@@ -15,8 +15,11 @@ public class Joueur : MonoBehaviour
     private GameObject _tripleyolo = default;
     private spawn _spawnmangaer = default;
     private UIManager _uImanager = default;
+    private Animator _anim;
     private bool _shieldActive;
-   
+    private int _compteur = 2;
+    private bool fire;
+    
 
 
     // Start is called before the first frame update
@@ -27,12 +30,42 @@ public class Joueur : MonoBehaviour
         transform.position = new Vector3(0f, -5.51f, 0f);
         _spawnmangaer = GameObject.Find("Spawn_Mannager").GetComponent<spawn>();
         _uImanager = FindObjectOfType<UIManager>();
+        _anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Deplacement();
+        UpdateFire();
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            _anim.SetBool("turnLeft", true);
+            _anim.SetBool("turnRight", false);
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            _anim.SetBool("turnLeft", false);
+            _anim.SetBool("turnRight", false);
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            _anim.SetBool("turnLeft", false);
+            _anim.SetBool("turnRight", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            _anim.SetBool("turnLeft", false);
+            _anim.SetBool("turnRight", false);
+        }
+    }
+
+    private void UpdateFire()
+    {
+        if (fire)
+        {
+            Fire(0f, 1f, 0f);
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (_tripleshot == false)
@@ -41,13 +74,13 @@ public class Joueur : MonoBehaviour
             }
             else
             {
-                Fire(0f, 1f, 0f,_tripleLaserPrefab);
+                Fire(0f, 1f, 0f, _tripleLaserPrefab);
             }
 
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            for(float i =-15f; i<=15f; i=i+0.1f)
+            for (float i = -15f; i <= 15f; i = i + 0.1f)
             {
                 Fire(i, 0f, 0f);
             }
@@ -56,16 +89,18 @@ public class Joueur : MonoBehaviour
         {
             Fire(0f, 1f, 0f, _tripleLaserPrefab);
         }
+        if (Input.GetKeyDown(KeyCode.F) && (_compteur % 2 == 0))
+        {
+            fire = true;
+            _compteur++;
+        }
+        else if (Input.GetKeyDown(KeyCode.F) && (_compteur % 2 == 1))
+        {
+            fire = false;
+            _compteur++;
+        }
     }
 
-    private void Fire(float i, float j, float k)
-    {
-        Instantiate(_LaserPrefab, transform.position + new Vector3(i, j, k), Quaternion.identity);
-    }
-    private void Fire(float i, float j, float k,GameObject laser)
-    {
-        Instantiate(laser, transform.position + new Vector3(i, j, k), Quaternion.identity);
-    }
     private void Deplacement()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -142,5 +177,13 @@ public class Joueur : MonoBehaviour
     {
         _shieldActive = true;
         _shield.SetActive(true);
+    }
+    private void Fire(float i, float j, float k)
+    {
+        Instantiate(_LaserPrefab, transform.position + new Vector3(i, j, k), Quaternion.identity);
+    }
+    private void Fire(float i, float j, float k, GameObject laser)
+    {
+        Instantiate(laser, transform.position + new Vector3(i, j, k), Quaternion.identity);
     }
 }
